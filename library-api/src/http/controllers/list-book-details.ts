@@ -10,12 +10,13 @@ export const listBookDetails = async (
   res: ServerResponse,
   bookId: string,
 ) => {
+  const validateListBookDetailsParamsSchema = z.object({
+    id: z.string().uuid(),
+  })
+  const listBookDetailsUseCase = makeListBookDetailsUseCase()
+
   try {
-    const validateListBookDetailsParamsSchema = z.object({
-      id: z.string().uuid(),
-    })
     const { id } = validateListBookDetailsParamsSchema.parse({ id: bookId })
-    const listBookDetailsUseCase = makeListBookDetailsUseCase()
     const book = await listBookDetailsUseCase.run({ id })
     const response = makeListBookDetailsResponse(book as Book)
     res.writeHead(200, { 'Content-Type': 'application/json' })
