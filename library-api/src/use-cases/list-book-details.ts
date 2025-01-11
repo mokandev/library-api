@@ -14,7 +14,7 @@ export class ListBookDetailsUseCase implements IListBookDetails {
   constructor(private booksRepository: BooksRepository) {}
 
   async run({ id }: ListBookDetailsUseCaseRequest) {
-    const book = await this.booksRepository.getBookDetails(id)
+    const book = await this.booksRepository.getBookById(id)
     if (!book) {
       throw new ResourceNotFoundError()
     }

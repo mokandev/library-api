@@ -7,7 +7,7 @@ export class PrismaBooksRepository implements BooksRepository {
     return books
   }
 
-  async getBookDetails(bookId: string) {
+  async getBookById(bookId: string) {
     const book = prisma.book.findUnique({
       where: {
         id: bookId,
