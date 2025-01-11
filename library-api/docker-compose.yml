@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  library-api-pg:
+    image: bitnami/postgresql
+    ports:
+      - "5432:5432"
+    environment:
+     - POSTGRESQL_USERNAME=user
+     - POSTGRESQL_PASSWORD=user_password123
+     - POSTGRESQL_DATABASE=library-db
+  
