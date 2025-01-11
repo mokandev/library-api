@@ -10,7 +10,10 @@ export const globalErrorHandler = (
   if (error instanceof ZodError) {
     res.writeHead(400)
     return res.end(
-      JSON.stringify({ message: 'Validation error', issues: error.format() }),
+      JSON.stringify({
+        message: 'Validation error',
+        issues: error.formErrors.fieldErrors,
+      }),
     )
   } else {
     if (env.NODE_ENV !== 'production') {
