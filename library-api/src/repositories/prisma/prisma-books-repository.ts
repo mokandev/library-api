@@ -6,4 +6,14 @@ export class PrismaBooksRepository implements BooksRepository {
     const books = await prisma.book.findMany()
     return books
   }
+
+  async getBookDetails(bookId: string) {
+    const book = prisma.book.findUnique({
+      where: {
+        id: bookId,
+      },
+    })
+
+    return book
+  }
 }
