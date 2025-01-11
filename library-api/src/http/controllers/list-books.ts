@@ -8,5 +8,5 @@ export const listBooks = async (req: IncomingMessage, res: ServerResponse) => {
   const books = await listBooksUseCase.run()
   const response = makeListBooksResponse(books as Book[])
   res.writeHead(200, { 'Content-Type': 'application/json' })
-  res.end(JSON.stringify(response))
+  return res.end(JSON.stringify(response))
 }
