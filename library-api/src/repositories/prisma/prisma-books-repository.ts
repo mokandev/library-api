@@ -16,4 +16,15 @@ export class PrismaBooksRepository implements BooksRepository {
 
     return book
   }
+
+  async getBookPageByNumber(bookId: string, pageNumber: number) {
+    const page = await prisma.page.findFirst({
+      where: {
+        book_id: bookId,
+        number: pageNumber,
+      },
+    })
+
+    return page
+  }
 }
