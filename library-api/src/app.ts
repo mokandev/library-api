@@ -1,5 +1,5 @@
-import http, { IncomingMessage, ServerResponse } from 'http';
+import http, { IncomingMessage, ServerResponse } from 'http'
 
-const app = http.createServer((req: IncomingMessage, res: ServerResponse) => {});
+const app = http.createServer((req: IncomingMessage, res: ServerResponse) => {})
 
-export default app;
+export default app
