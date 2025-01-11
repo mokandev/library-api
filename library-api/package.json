@@ -14,9 +14,9 @@
 	"author": "Carlos A. Flach",
 	"license": "ISC",
 	"devDependencies": {
-		"@types/node": "^22.10.5",
-		"tsup": "^8.3.5",
-		"tsx": "^4.19.2",
-		"typescript": "^5.7.3"
+		"@types/node": "22.10.5",
+		"tsup": "8.3.5",
+		"tsx": "4.19.2",
+		"typescript": "5.7.3"
 	}
 }
