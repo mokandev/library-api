@@ -8,5 +8,8 @@ export async function appRoutes(req: IncomingMessage, res: ServerResponse) {
 
   if (pathname === '/api/v1/books' && method === 'GET') {
     await listBooks(req, res)
+  } else {
+    res.writeHead(404)
+    res.end(JSON.stringify('Resource Not Found'))
   }
 }
