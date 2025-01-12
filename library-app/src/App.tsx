@@ -4,10 +4,12 @@ import Library, {loader as libraryLoader} from './features/library/Library';
 import BookDetail from './features/book/BookDetail';
 import BookPage from './features/book/BookPage';
 import AppLayout from './ui/AppLayout';
+import PageNotFound from './ui/PageNotFound';
 
 const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    errorElement: <PageNotFound />,
     children: [
       {
         path: '/',
@@ -16,7 +18,8 @@ const router = createBrowserRouter([
       {
         path: '/library',
         element: <Library />,
-        loader: libraryLoader
+        loader: libraryLoader,
+        errorElement: <PageNotFound />,
       },
       {
         path: '/book/:bookId',
