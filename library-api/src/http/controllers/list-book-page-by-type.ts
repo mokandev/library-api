@@ -38,7 +38,7 @@ export const listBookPageByType = async (
   } catch (error) {
     if (error instanceof ResourceNotFoundError) {
       res.writeHead(404, { 'Content-Type': 'application/json' })
-      res.end(JSON.stringify({ message: 'Not Found' }))
+      return res.end(JSON.stringify({ message: 'Not Found' }))
     }
     throw error
   }

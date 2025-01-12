@@ -8,6 +8,17 @@ export class PrismaPageRepository implements PagesRepository {
         book_id: bookId,
         number: pageNumber,
       },
+      select: {
+        id: true,
+        number: true,
+        content: true,
+        book: {
+          select: {
+            title: true,
+            total_pages: true,
+          },
+        },
+      },
     })
 
     return page

@@ -1,6 +1,7 @@
-import { Page } from '@prisma/client'
+import { PageWithBook } from '@/repositories/pages-repository'
+
 export const makeListBookPageByTypeResponse = (
-  page: Page,
+  page: PageWithBook,
   pageNumber: number,
   pageType: 'html' | 'plain',
 ) => {
