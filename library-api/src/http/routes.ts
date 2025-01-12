@@ -2,8 +2,10 @@ import { IncomingMessage, ServerResponse } from 'http'
 import { listBooks } from './controllers/list-books'
 import { listBookDetails } from './controllers/list-book-details'
 import { listBookPageByType } from './controllers/list-book-page-by-type'
+import { setupCors } from './middlewares/cors'
 
 export async function appRoutes(req: IncomingMessage, res: ServerResponse) {
+  setupCors(req, res)
   const { method } = req
   const baseURL = `http://${req.headers.host}`
   const parsedUrl = new URL(req.url || '', baseURL)
