@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Page</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: inherit;
+    }
+
+    html {
+      font-size: 62.5%;
+      box-sizing: border-box;
+      background-color: #faedcd
+    }
+
+    body {
+      padding: 5rem 5rem 10rem;
+      line-height: 1.7;
+      font-family: 'Nunito Sans', sans-serif;
+      color: #555;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .book {
+      width: 50%;
+      height: auto;
+      background-color: #fefae0;
+      padding: 5rem 5rem 10rem 10rem;
+    }
+
+    .book__title{
+      text-align: center;
+    }
+
+    .book__page-card {
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .book__page-content {
+      margin-top: 5rem;
+      text-align: left;
+      font: inherit;
+      font-size: medium;
+    }
+    .book__page-footer{
+      align-self: flex-end;
+      font-size: small;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="book">
+      <h1 class="book__title">{%BOOKTITLE%}</h1>
+      <div class="book__page-card">
+        <div class="book__page-content">
+          <p>{%BOOKPAGE%}</p>
+        </div>
+
+        <div class="book__page-footer">
+          <p>
+            {%BOOKPAGE%} / {%TOTALPAGES%}
+          </p>
+        </div>
+      </div>
+  </div>
+
+</body>
+
+</html>
