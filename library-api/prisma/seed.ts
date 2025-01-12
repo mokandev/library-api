@@ -23,7 +23,7 @@ async function main() {
       data: {
         title,
         author,
-        publishedAt,
+        published_at: publishedAt,
         total_pages: numberOfPages,
         pages: {
           create: pagesData,

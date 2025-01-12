@@ -18,7 +18,7 @@ model Book {
   id String @id @default(uuid())
   title     String
   author    String
-  publishedAt DateTime
+  published_at DateTime
   pages     Page[]
   total_pages  Int     @default(0)
   created_at DateTime @default(now())
