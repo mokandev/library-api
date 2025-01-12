@@ -24,7 +24,12 @@ export const listBookDetails = async (
   } catch (error) {
     if (error instanceof ResourceNotFoundError) {
       res.writeHead(404, { 'Content-Type': 'application/json' })
-      return res.end(JSON.stringify({ message: 'Not Found' }))
+      return res.end(
+        JSON.stringify({
+          status: 'fail',
+          message: 'Not found',
+        }),
+      )
     }
     throw error
   }
