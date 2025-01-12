@@ -30,10 +30,8 @@ export const listBookPageByType = async (
       pageType,
     })
     const page = await listBookPageByTypeUseCase.run({ id, pgNumber })
-    const response = makeListBookPageByTypeResponse(page, pgNumber, pgType)
-    pgType === 'html'
-      ? res.writeHead(406, { 'Content-Type': 'application/json' })
-      : res.writeHead(200, { 'Content-Type': 'application/json' })
+    const response = await makeListBookPageByTypeResponse(page, pgType)
+    res.writeHead(200, { 'Content-Type': 'application/json' })
     return res.end(JSON.stringify(response))
   } catch (error) {
     if (error instanceof ResourceNotFoundError) {
