@@ -4,8 +4,9 @@
 	"description": "Gbh Library Api",
 	"main": "app.js",
 	"scripts": {
+		"predev": "docker compose up -d && npx prisma migrate dev && npm run seed",
 		"dev": "tsx watch src/server.ts",
-		"build": "tsup src --out-dir build",
+		"build": "tsup --config tsup.config.ts && cp -r src/templates build/templates",
 		"start": "node build/server.js",
 		"seed": "tsx prisma/seed.ts"
 	},
