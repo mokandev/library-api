@@ -1,21 +1,23 @@
+import { replaceTemplate } from '@/helpers/replaceTemplate'
 import { PageWithBook } from '@/repositories/pages-repository'
 
-export const makeListBookPageByTypeResponse = (
+export const makeListBookPageByTypeResponse = async (
   page: PageWithBook,
-  pageNumber: number,
   pageType: 'html' | 'plain',
 ) => {
   if (pageType === 'html') {
+    const html = await replaceTemplate(page)
     return {
-      status: 'fail',
-      message: 'Not implemented yet',
+      status: 'success',
+      data: {
+        content: html
+      }
     }
   } else {
     return {
       status: 'success',
-      pageNumber,
       data: {
-        pageContent: page,
+        content: page.content,
       },
     }
   }
