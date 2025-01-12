@@ -3,24 +3,31 @@ import Home from './ui/Home';
 import Library from './features/library/Library';
 import BookDetail from './features/book/BookDetail';
 import BookPage from './features/book/BookPage';
+import AppLayout from './ui/AppLayout';
 
 const router = createBrowserRouter([
-	{
-		path: '/',
-		element: <Home />,
-	},
-	{
-		path: '/library',
-		element: <Library />,
-	},
   {
-    path: '/book/:bookId',
-    element: <BookDetail/>
-  },
-  {
-    path: '/book/:bookId/page/:pageNumber',
-    element: <BookPage />
+    element: <AppLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/library',
+        element: <Library />,
+      },
+      {
+        path: '/book/:bookId',
+        element: <BookDetail/>
+      },
+      {
+        path: '/book/:bookId/page/:pageNumber',
+        element: <BookPage />
+      }
+    ]
   }
+	
 ]);
 
 function App() {
