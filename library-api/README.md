@@ -20,9 +20,10 @@ The Library API is built with Node.js and TypeScript, and uses Prisma for databa
 
 1. Clone the repository
 2. Install dependencies with command `npm install`
-3. Run the command `npm run dev`. It will:
+3. Run the command `npm run setup`. It will:
    1. Create the .env file
    2. Run docker compose up to setup database
    3. Run the migrations
    4. Seed the database
+4. Then run the command `npm run dev`
 
