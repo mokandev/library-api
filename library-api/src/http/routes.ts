@@ -23,7 +23,7 @@ export async function appRoutes(req: IncomingMessage, res: ServerResponse) {
     apiSegment === 'api' &&
     v1Segment === 'v1' &&
     booksSegment === 'books' &&
-    pageSegment !== 'page' &&
+    !pageSegment &&
     bookId
 
   const bookPageByTypeRouteCondition =
@@ -43,7 +43,7 @@ export async function appRoutes(req: IncomingMessage, res: ServerResponse) {
   } else if (bookPageByTypeRouteCondition) {
     await listBookPageByType(req, res, bookId, pageNumber, pageType)
   } else {
-    res.writeHead(404)
-    return res.end(JSON.stringify('Resource Not Found'))
+    res.writeHead(400)
+    return res.end(JSON.stringify({ message: 'Bad Request' }))
   }
 }
