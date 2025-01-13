@@ -17,7 +17,7 @@ export default function AppLayout() {
       setLocalStorageCache('libraryBooks', []);
     } else if (location.pathname === '/library') {
       const data = getLocalStorageCache('libraryBooks');
-      if (data.length > 0) {
+      if (data?.length > 0) {
         loadBooks(data);
       }
     }

@@ -7,7 +7,7 @@ export function formatDate(dateStr: string) {
 }
 
 
-export function setLocalStorageCache(key: string, data: IBook[] | IBook) {
+export function setLocalStorageCache(key: string, data: IBook[] | IBook | string) {
   localStorage.setItem(`${key}`, JSON.stringify(data));
 }
 

@@ -11,7 +11,7 @@ function CreateUser() {
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
-    if (username.length < 3) return;
+    if (username?.length < 3) return;
     updateUser(username);
     navigate('/library');
   }

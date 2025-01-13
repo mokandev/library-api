@@ -24,12 +24,13 @@ export default function Library() {
 
 export async function loader() {
   const cachedBooksData = getLocalStorageCache('libraryBooks');
-  if (cachedBooksData.length > 0) {
+  if (cachedBooksData?.length > 0) {
     return { books: cachedBooksData };
   } else {
     const data = await getBooks();
     const { books } = data;
     setLocalStorageCache('libraryBooks', books);
+    setLocalStorageCache('page-text-type', 'plain');
     return data;
   }
 }
