@@ -2,12 +2,14 @@ interface IButtonProps {
   text: string;
   handlerFunction?: () => void;
   type: 'small' | 'primary' | 'secondary';
+  disabled?: boolean;
 }
 
 export const Button: React.FC<IButtonProps> = ({
   text,
   handlerFunction,
   type,
+  disabled,
 }) => {
   const base =
     'inline-block text-sm rounded-full bg-yellow-400  font-semibold uppercase tracking-wide text-stone-800 transition-all duration-300 hover:bg-yellow-300 focus:bg-yellow-300 focus:outline-none focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed disabled:bg-stone-500 ';
@@ -20,7 +22,11 @@ export const Button: React.FC<IButtonProps> = ({
   };
 
   return (
-    <button onClick={handlerFunction} className={styles[type]}>
+    <button
+      onClick={handlerFunction}
+      className={styles[type]}
+      disabled={disabled}
+    >
       {text}
     </button>
   );
