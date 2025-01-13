@@ -1,10 +1,11 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Home from './ui/Home';
-import Library, {loader as libraryLoader} from './features/library/Library';
-import BookDetail, { loader as bookLoader} from './features/book/BookDetail';
-import BookPage, { loader as bookPageLoader} from './features/book/BookPage';
+import Library, { loader as libraryLoader } from './features/library/Library';
+import BookDetail, { loader as bookLoader } from './features/book/BookDetail';
+import BookPage, { loader as bookPageLoader } from './features/book/BookPage';
 import AppLayout from './ui/AppLayout';
 import Error from './ui/Error';
+import { LibraryProvider } from './context/LibraryContext';
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/book/:bookId',
-        element: <BookDetail/>,
+        element: <BookDetail />,
         loader: bookLoader,
         errorElement: <Error />,
       },
@@ -32,14 +33,17 @@ const router = createBrowserRouter([
         element: <BookPage />,
         loader: bookPageLoader,
         errorElement: <Error />,
-      }
-    ]
-  }
-	
+      },
+    ],
+  },
 ]);
 
 function App() {
-	return <RouterProvider router={router} />;
+  return (
+    <LibraryProvider>
+      <RouterProvider router={router} />
+    </LibraryProvider>
+  );
 }
 
 export default App;
