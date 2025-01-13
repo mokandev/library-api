@@ -12,6 +12,9 @@ npm or yarn
 ## Install the dependencies:
 - Run `npm install`
 
+## Project Setup
+- Run `npm run setup`
+
 ## Running the development server
 - Then start the development server, run `npm run dev`
 
