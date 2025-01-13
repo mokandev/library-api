@@ -1,10 +1,16 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from 'react';
+import { Button } from '../../ui/Button';
+import { Input } from '../../ui/Input';
 
 function CreateUser() {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState('');
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
+  }
+
+  function handleChange(e: ChangeEvent<HTMLInputElement>) {
+    setUsername(e.target.value);
   }
 
   return (
@@ -13,17 +19,11 @@ function CreateUser() {
         👋 Welcome! Please start by telling us your name:
       </p>
 
-      <input
-        type="text"
-        placeholder="Your full name"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        className="w-72"
-      />
+      <Input onChange={handleChange} value={username} />
 
-      {username !== "" && (
+      {username !== '' && (
         <div>
-          <button>Start ordering</button>
+          <Button text="Start reading now" />
         </div>
       )}
     </form>

@@ -1,7 +1,8 @@
-import { Link, LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
 import { getBook, IGetBook } from '../../services/api';
 import { formatDate } from '../../utils/helpers';
 import { Button } from '../../ui/Button';
+import { LinkButton } from '../../ui/LinkButton';
 
 export default function BookDetail() {
   const { book } = useLoaderData<IGetBook>();
@@ -11,12 +12,7 @@ export default function BookDetail() {
 
   return (
     <div>
-      <Link
-        to="/library"
-        className="test-sm text-blue-500 hover:text-blue-600 hover:underline"
-      >
-        &larr; Back to Library
-      </Link>
+      <LinkButton to="/library">&larr; Back to Library</LinkButton>
       <h1 className="mb-8 text-center text-xl font-semibold md:text-2xl">
         Book Detail
       </h1>
