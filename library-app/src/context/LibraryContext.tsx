@@ -1,19 +1,19 @@
-import {
-  createContext,
-  useContext,
-  ReactNode,
-  useReducer,
-} from 'react';
+import { createContext, useContext, ReactNode, useReducer } from 'react';
 import { initialState, reducer } from '../reducers/libraryReducer';
+import { IBook } from '../interfaces/book';
 
 interface ILibraryContext {
   username: string;
-  createUser: (username: string) => void;
+  updateUser: (username: string) => void;
+  loadBooks: (books: IBook[]) => void;
+  books: IBook[];
 }
 
 const defaultContextValue: ILibraryContext = {
   username: '',
-  createUser: () => {},
+  updateUser: () => {},
+  loadBooks: () => {},
+  books: [],
 };
 
 const LibraryContext = createContext<ILibraryContext | undefined>(
@@ -21,15 +21,18 @@ const LibraryContext = createContext<ILibraryContext | undefined>(
 );
 
 function LibraryProvider({ children }: { children: ReactNode }) {
-  const [{ username }, dispatch] = useReducer(reducer, initialState);
+  const [{ username, books }, dispatch] = useReducer(reducer, initialState);
 
-  const createUser = (username: string) => {
-    console.log('Chegou createUser', username);
+  const updateUser = (username: string) => {
     dispatch({ type: 'user/create', payload: username });
   };
 
+  const loadBooks = (books: IBook[]) => {
+    dispatch({ type: 'books/load', payload: books });
+  };
+
   return (
-    <LibraryContext.Provider value={{ username, createUser }}>
+    <LibraryContext.Provider value={{ username, updateUser, books, loadBooks }}>
       {children}
     </LibraryContext.Provider>
   );

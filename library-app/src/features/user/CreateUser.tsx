@@ -5,14 +5,14 @@ import { useLibraryContext } from '../../context/LibraryContext';
 import { useNavigate } from 'react-router-dom';
 
 function CreateUser() {
-  const { createUser } = useLibraryContext();
+  const { updateUser } = useLibraryContext();
   const [username, setUsername] = useState('');
   const navigate = useNavigate();
 
   function handleSubmit(e: React.SyntheticEvent) {
     e.preventDefault();
     if (username.length < 3) return;
-    createUser(username);
+    updateUser(username);
     navigate('/library');
   }
 
