@@ -1,5 +1,5 @@
 import { createContext, useContext, ReactNode, useReducer } from 'react';
-import { initialState, reducer } from '../reducers/libraryReducer';
+import { ActionTypes, initialState, reducer } from '../reducers/libraryReducer';
 import { IBook } from '../interfaces/book';
 
 interface ILibraryContext {
@@ -7,6 +7,11 @@ interface ILibraryContext {
   updateUser: (username: string) => void;
   loadBooks: (books: IBook[]) => void;
   books: IBook[];
+  currentBookId: string;
+  currentBookPage: number;
+  updateCurrentBook: (bookId: string) => void;
+  updateCurrentBookPage: (type: ActionTypes, pageNumber?: number) => void;
+  currentBookTotalPages: number
 }
 
 const defaultContextValue: ILibraryContext = {
@@ -14,6 +19,11 @@ const defaultContextValue: ILibraryContext = {
   updateUser: () => {},
   loadBooks: () => {},
   books: [],
+  currentBookPage: 0,
+  currentBookId: '',
+  updateCurrentBook: () => {},
+  updateCurrentBookPage: () => {},
+  currentBookTotalPages: 0
 };
 
 const LibraryContext = createContext<ILibraryContext | undefined>(
@@ -21,7 +31,10 @@ const LibraryContext = createContext<ILibraryContext | undefined>(
 );
 
 function LibraryProvider({ children }: { children: ReactNode }) {
-  const [{ username, books }, dispatch] = useReducer(reducer, initialState);
+  const [{ username, books, currentBookPage, currentBookId, currentBookTotalPages }, dispatch] = useReducer(
+    reducer,
+    initialState,
+  );
 
   const updateUser = (username: string) => {
     dispatch({ type: 'user/create', payload: username });
@@ -31,8 +44,28 @@ function LibraryProvider({ children }: { children: ReactNode }) {
     dispatch({ type: 'books/load', payload: books });
   };
 
+  const updateCurrentBook = (bookId: string) => {
+    dispatch({ type: 'book/updateCurrentBook', payload: bookId });
+  };
+
+  const updateCurrentBookPage = (type: ActionTypes, pageNumber?: number) => {
+    dispatch({ type , payload: pageNumber });
+  };
+
   return (
-    <LibraryContext.Provider value={{ username, updateUser, books, loadBooks }}>
+    <LibraryContext.Provider
+      value={{
+        username,
+        updateUser,
+        books,
+        loadBooks,
+        currentBookPage,
+        updateCurrentBook,
+        updateCurrentBookPage,
+        currentBookId,
+        currentBookTotalPages
+      }}
+    >
       {children}
     </LibraryContext.Provider>
   );
