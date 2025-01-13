@@ -5,6 +5,7 @@ import { Button } from '../../ui/Button';
 import { LinkButton } from '../../ui/LinkButton';
 import { PageTitle } from '../../ui/PageTitle';
 import { useLibraryContext } from '../../context/LibraryContext';
+import { getLocalStorageCache } from '../../utils/helpers';
 
 export default function BookPage() {
   const {currentBookPage, updateCurrentBookPage, currentBookTotalPages, currentBookId} = useLibraryContext()
@@ -52,10 +53,11 @@ export default function BookPage() {
 }
 
 export async function loader({ params }: LoaderFunctionArgs) {
+  const textType = getLocalStorageCache('page-text-type')
   const bookPage = await getBookPage(
     params.bookId as string,
     Number(params.pageNumber),
-    'plain',
+    textType,
   );
   return bookPage;
 }
