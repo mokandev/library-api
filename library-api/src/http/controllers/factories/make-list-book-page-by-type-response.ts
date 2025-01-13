@@ -10,8 +10,8 @@ export const makeListBookPageByTypeResponse = async (
     return {
       status: 'success',
       data: {
-        content: html
-      }
+        content: html,
+      },
     }
   } else {
     return {
