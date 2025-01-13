@@ -1,26 +1,33 @@
-import { LoaderFunctionArgs, useLoaderData } from 'react-router-dom';
+import { LoaderFunctionArgs, useLoaderData, useNavigate } from 'react-router-dom';
 import { getBookPage } from '../../services/api';
 import { IPage } from '../../interfaces/page';
 import { Button } from '../../ui/Button';
 import { LinkButton } from '../../ui/LinkButton';
 import { PageTitle } from '../../ui/PageTitle';
+import { useLibraryContext } from '../../context/LibraryContext';
 
 export default function BookPage() {
+  const {currentBookPage, updateCurrentBookPage, currentBookTotalPages, currentBookId} = useLibraryContext()
   const { content } = useLoaderData<IPage>();
+  const navigate = useNavigate()
 
   function handleNextPageClick() {
-    console.log('handleNextPageClick');
+    if(currentBookPage === currentBookTotalPages) return
+    updateCurrentBookPage('book/nextPage')
+    navigate(`/book/${currentBookId}/page/${currentBookPage + 1}`)
   }
 
   function handlePreviousPageClick() {
-    console.log('handlePreviousPageClick');
+    if(currentBookPage === 1) return
+    updateCurrentBookPage('book/previousPage')
+    navigate(`/book/${currentBookId}/page/${currentBookPage - 1}`)
   }
 
   return (
     <div className="mt-6 h-full">
       <div className="flex items-center justify-between">
         <LinkButton to="/library">&larr; Back to Library</LinkButton>
-        <p className="font-light text-stone-900"> 1/5</p>
+        <p className="font-light text-stone-900"> {currentBookPage}/{currentBookTotalPages}</p>
       </div>
       <PageTitle>Book Page</PageTitle>
 
@@ -30,12 +37,14 @@ export default function BookPage() {
         <Button
           type="secondary"
           text="Previous Page"
-          handlerFunction={handleNextPageClick}
+          handlerFunction={handlePreviousPageClick}
+          disabled={currentBookPage === 1}
         />
         <Button
           type="secondary"
           text="Next Page"
-          handlerFunction={handlePreviousPageClick}
+          handlerFunction={handleNextPageClick}
+          disabled={currentBookPage === currentBookTotalPages}
         />
       </div>
     </div>
